@@ -7,7 +7,7 @@ from sqlalchemy import Table, ForeignKey, Column
 from sqlalchemy.types import Integer, Unicode
 from sqlalchemy.orm import relation, backref
 
-from xreport.model import DeclarativeBase, metadata, DBSession
+from squid.model import DeclarativeBase, metadata, DBSession
 
 #Check incoming garbage here, in each FK definition.
 #ForeignValues should call a method in the child class to do it
@@ -29,7 +29,6 @@ class ForeignValues():
             data = cls()
             data.text = text
             DBSession.add(data)
-            return data
         elif len(data) == 1:
             data = data[0]
         else:
@@ -210,8 +209,8 @@ class MiniAccess(DeclarativeBase):
             mini.address = access.address
             mini.domain = access.domain
             mini.proxy_user = access.proxy_user
-            mini.upload_bytes = access.request_size
-            mini.download_bytes = access.reply_size
+            mini.upload_bytes = int(access.request_size)
+            mini.download_bytes = int(access.reply_size)
             mini.count = 1
             mini.status = status
             DBSession.add(mini)
