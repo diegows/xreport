@@ -60,3 +60,7 @@ def init_model(engine):
 
 # Import your model modules here.
 from squid.model.auth import User, Group, Permission
+from squid.model.access import Address, Method, ProxyUser, ProxyStatus
+from squid.model.access import HierarchyStatus, MimeType, Protocol, Domain
+from squid.model.access import ServerAddress, Access, MiniAccess
+
