@@ -12,6 +12,8 @@ from squid.controllers.error import ErrorController
 from squid import model
 from squid.controllers.secure import SecureController
 
+from squid.controllers.reports import ReportsController
+
 __all__ = ['RootController']
 
 
@@ -34,6 +36,8 @@ class RootController(BaseController):
     admin = Catwalk(model, DBSession)
     
     error = ErrorController()
+
+    reports = ReportsController()
 
     @expose('squid.templates.index')
     def index(self):

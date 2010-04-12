@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+  <title>Proxy Reports</title>
+</head>
+
+<?python
+
+def is_sel(group_by):
+  if session['group_by'] == group_by:
+    return 'selected'
+
+  return None
+
+?>
+
+<body>
+    <div id="group_by">
+      Group by:
+      <select name="report_menu" 
+          onchange="window.location='${tg.url('/reports')}/' + this.value;">
+        <option value="index" selected="${is_sel('day')}">Day</option>
+        <option value="week" selected="${is_sel('week')}">Week</option>
+        <option value="month" selected="${is_sel('month')}">Month</option>
+      </select>
+    </div>
+    ${c.reports()}
+</body>
+</html>

@@ -35,4 +35,36 @@
   </div>
 </py:def>    
 
+<py:def function="sidebar_top_reports">
+  <div id="sb_top" class="sidebar">
+      <h2>Proxy</h2>
+      <ul class="links">
+        <li py:choose="">
+        <span py:otherwise=""><a href="${tg.url('/reports')}"></a></span>
+        </li>
+        <li py:choose="">
+        <span py:otherwise=""><a
+        href="${tg.url('/netdata')}">Estad&iacute;sticas</a></span>
+        </li>
+        <li py:choose="">
+        <span py:otherwise=""><a
+        href="${tg.url('/reports/')}">Reports</a></span>
+        </li>
+      </ul>
+  </div>
+</py:def>    
+
+<py:def function="sidebar_report">
+  <div id="sb_top" class="sidebar" py:if="len(c.query_params) > 0" >
+    <ul>
+      <li py:for="attr, val in c.query_params.iteritems()">
+        ${attr}: ${val}
+      </li>
+    </ul>
+    <a href="${c.backlink}" py:if="c.backlink">Back</a>
+  </div>
+</py:def>    
+
+
 </html>
+
